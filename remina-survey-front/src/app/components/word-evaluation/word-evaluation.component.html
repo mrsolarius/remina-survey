@@ -2,13 +2,23 @@
   <h2 class="word">{{ word() }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
-    <fieldset>
+    <label class="skip">
+      <input type="checkbox" formControlName="skip" />
+      <span>Je ne connais pas ce mot</span>
+    </label>
+    @if (form.controls.skip.value) {
+      <p class="hint">Aucune information ne sera envoyée et tous les champs sont désactivés.</p>
+    }
+
+    <fieldset [disabled]="form.controls.skip.value">
       <legend>Dimensions principales</legend>
+      <img src="valence.png" alt="représentation de la valance">
       <label>
         Valence (1–9)
         <input type="range" formControlName="valence" min="1" max="9" />
         <span>{{ form.value.valence }}</span>
       </label>
+      <img src="arousal.png" alt="représentation de l'arousal">
       <label>
         Arousal (1–9)
         <input type="range" formControlName="arousal" min="1" max="9" />
@@ -16,7 +26,7 @@
       </label>
     </fieldset>
 
-    <fieldset>
+    <fieldset [disabled]="form.controls.skip.value">
       <legend>Émotions (1–5)</legend>
       <div class="emotions">
         <label>
@@ -73,7 +83,7 @@
     </fieldset>
 
     <div class="actions">
-      <button type="submit" [disabled]="form.invalid || submitting()">Valider</button>
+      <button type="submit" [disabled]="((form.invalid && !form.controls.skip.value) || submitting())">Valider</button>
     </div>
   </form>
 </div>

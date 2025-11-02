@@ -27,16 +27,17 @@ export class EvaluationComponent {
   });
   readonly label = computed(() => `${this.index()} / ${this.total().length}`);
 
-  onSubmit(wordId: string, payload: EvaluationPayload) {
+  onSubmit(wordId: string, payload: EvaluationPayload | null) {
     const nextIndex = this.index() + 1;
     const shouldComplete = nextIndex >= this.total().length;
     const complete$ = shouldComplete ? this.session.complete() : of(void 0);
 
-    this.evals.submit(wordId, payload)
-      .pipe(
-        switchMap(() => complete$),
-        tap(() => this.session.next())
-      )
+    const flow$ = payload
+      ? this.evals.submit(wordId, payload).pipe(switchMap(() => complete$))
+      : complete$;
+
+    flow$
+      .pipe(tap(() => this.session.next()))
       .subscribe({
         error: (e) => {
           console.error(e);

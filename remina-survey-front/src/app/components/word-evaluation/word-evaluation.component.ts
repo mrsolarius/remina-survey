@@ -30,6 +30,7 @@ export class WordEvaluationComponent {
   private readonly fb = new FormBuilder();
 
   readonly form = this.fb.nonNullable.group({
+    skip: this.fb.nonNullable.control(false),
     valence: this.fb.nonNullable.control(5, {validators: [Validators.min(1), Validators.max(9), Validators.required]}),
     arousal: this.fb.nonNullable.control(5, {validators: [Validators.min(1), Validators.max(9), Validators.required]}),
     awe: this.fb.nonNullable.control(3, {validators: [Validators.min(1), Validators.max(5), Validators.required]}),
@@ -44,12 +45,31 @@ export class WordEvaluationComponent {
     anxiety: this.fb.nonNullable.control(3, {validators: [Validators.min(1), Validators.max(5), Validators.required]}),
   });
 
-  readonly evaluationSubmit = output<Word>();
+  readonly evaluationSubmit = output<Word | null>();
 
   async onSubmit() {
-    if (this.form.invalid || this.submitting()) return;
+    if (this.submitting()) return;
+    const {skip, ...rest} = this.form.getRawValue();
+    if (!skip && this.form.invalid) return;
+
     this.submitting.set(true);
-    this.evaluationSubmit.emit(this.form.getRawValue());
+    this.evaluationSubmit.emit(skip ? null : (rest as Word));
     this.submitting.set(false);
+
+    this.form.reset({
+      skip: false,
+      valence: 5,
+      arousal: 5,
+      awe: 3,
+      fear: 3,
+      contentment: 3,
+      anger: 3,
+      amusement: 3,
+      disgust: 3,
+      serenity: 3,
+      sadness: 3,
+      excitement: 3,
+      anxiety: 3,
+    });
   }
 }
