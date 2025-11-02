@@ -8,6 +8,7 @@
   font-size: 2rem;
   margin: 0 0 1rem;
   text-align: center;
+  text-transform: capitalize;
 }
 
 fieldset {
@@ -26,16 +27,45 @@ legend {
 }
 
 .emotions {
-  display: grid;
-  gap: .5rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.emotion-pair {
+  display: flex;
+  gap: 2rem;
+  background: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+}
+
+.slider-container {
+  padding: 1rem 0;
+  width: 100%;
+  flex: 1 1 20rem;
 }
 
 label {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: .5rem;
+  gap: 1rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+:host ::ng-deep {
+  .mat-mdc-slider {
+    width: 100%;
+  }
+
+  .mat-mdc-slider-visual-thumb {
+    transform: scale(1.5);
+  }
 }
 
 input[type="range"] {
@@ -49,4 +79,26 @@ input[type="range"] {
 
 button {
   padding: .5rem 1rem;
+}
+
+.mat-expansion-panel {
+  background: #fafafa !important;
+  box-shadow: none !important;
+}
+
+.mat-expansion-panel-header {
+  background: transparent !important;
+}
+
+.mat-expansion-panel .mat-expansion-panel-content ul {
+  margin: 0;
+  padding: 0 0 0 1.2rem;
+  list-style: disc;
+}
+
+.mat-expansion-panel .mat-expansion-panel-content li {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  color: #333;
 }

@@ -12,160 +12,234 @@
       }
 
       <fieldset [disabled]="form.controls.skip.value">
-        <legend>Dimensions principales</legend>
+        <legend>Dimensions principales (1–9)</legend>
 
         <div class="slider-container">
           <img ngSrc="valence.png" width="300" height="120" alt="Représentation de la valence"/>
 
           <label for="valence-slider">
-            Valence (1–9)
+            Valence <span aria-live="polite">{{ form.value.valence }}</span>
           </label>
           <mat-slider id="valence-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
             <input matSliderThumb formControlName="valence"/>
           </mat-slider>
-          <span aria-live="polite">{{ form.value.valence }}</span>
         </div>
 
         <div class="slider-container">
           <img ngSrc="arousal.png" width="300" height="120" alt="Représentation de l'arousal"/>
           <label for="arousal-slider">
-            Arousal (1–9)
+            Arousal <span aria-live="polite">{{ form.value.arousal }}</span>
           </label>
           <mat-slider id="arousal-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
             <input matSliderThumb formControlName="arousal"/>
           </mat-slider>
-          <span aria-live="polite">{{ form.value.arousal }}</span>
         </div>
       </fieldset>
 
       <fieldset [disabled]="form.controls.skip.value">
         <legend>Émotions (1–5)</legend>
         <div class="emotions">
-          <div class="slider-container">
-            <label for="awe-slider">
-              Émerveillement
-            </label>
-            <mat-slider id="awe-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="awe"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.awe }}</span>
+          <div class="emotion-pair">
+            <div class="slider-container">
+              <label for="awe-slider">
+                Émerveillement <span aria-live="polite">{{ form.value.awe }}</span>
+              </label>
+              <mat-slider id="awe-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="awe"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.awe.label }}</strong>: {{ definitions.awe.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+            <div class="slider-container">
+              <label for="fear-slider">
+                Peur <span aria-live="polite">{{ form.value.fear }}</span>
+              </label>
+              <mat-slider id="fear-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="fear"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.fear.label }}</strong>: {{ definitions.fear.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
 
-          <div class="slider-container">
-            <label for="fear-slider">
-              Peur
-            </label>
-            <mat-slider id="fear-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="fear"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.fear }}</span>
+          <div class="emotion-pair">
+            <div class="slider-container">
+              <label for="contentment-slider">
+                Contentement <span aria-live="polite">{{ form.value.contentment }}</span>
+              </label>
+              <mat-slider id="contentment-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="contentment"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.contentment.label }}</strong>: {{ definitions.contentment.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+            <div class="slider-container">
+              <label for="anger-slider">
+                Colère <span aria-live="polite">{{ form.value.anger }}</span>
+              </label>
+              <mat-slider id="anger-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="anger"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.anger.label }}</strong>: {{ definitions.anger.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
 
-          <div class="slider-container">
-            <label for="contentment-slider">
-              Contentement
-            </label>
-            <mat-slider id="contentment-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="contentment"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.contentment }}</span>
+          <div class="emotion-pair">
+            <div class="slider-container">
+              <label for="amusement-slider">
+                Amusement <span aria-live="polite">{{ form.value.amusement }}</span>
+              </label>
+              <mat-slider id="amusement-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="amusement"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.amusement.label }}</strong>: {{ definitions.amusement.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+            <div class="slider-container">
+              <label for="disgust-slider">
+                Dégoût <span aria-live="polite">{{ form.value.disgust }}</span>
+              </label>
+              <mat-slider id="disgust-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="disgust"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.disgust.label }}</strong>: {{ definitions.disgust.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
 
-          <div class="slider-container">
-            <label for="anger-slider">
-              Colère
-            </label>
-            <mat-slider id="anger-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="anger"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.anger }}</span>
+          <div class="emotion-pair">
+            <div class="slider-container">
+              <label for="serenity-slider">
+                Sérénité <span aria-live="polite">{{ form.value.serenity }}</span>
+              </label>
+              <mat-slider id="serenity-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="serenity"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.serenity.label }}</strong>: {{ definitions.serenity.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+            <div class="slider-container">
+              <label for="sadness-slider">
+                Tristesse <span aria-live="polite">{{ form.value.sadness }}</span>
+              </label>
+              <mat-slider id="sadness-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="sadness"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.sadness.label }}</strong>: {{ definitions.sadness.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
 
-          <div class="slider-container">
-            <label for="amusement-slider">
-              Amusement
-            </label>
-            <mat-slider id="amusement-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="amusement"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.amusement }}</span>
-          </div>
+          <div class="emotion-pair">
+            <div class="slider-container">
+              <label for="excitement-slider">
+                Excitation <span aria-live="polite">{{ form.value.excitement }}</span>
+              </label>
+              <mat-slider id="excitement-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="excitement"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.excitement.label }}</strong>: {{ definitions.excitement.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
 
-          <div class="slider-container">
-            <label for="disgust-slider">
-              Dégoût
-            </label>
-            <mat-slider id="disgust-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="disgust"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.disgust }}</span>
-          </div>
-
-          <div class="slider-container">
-            <label for="serenity-slider">
-              Sérénité
-            </label>
-            <mat-slider id="serenity-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="serenity"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.serenity }}</span>
-          </div>
-
-          <div class="slider-container">
-            <label for="sadness-slider">
-              Tristesse
-            </label>
-            <mat-slider id="sadness-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="sadness"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.sadness }}</span>
-          </div>
-
-          <div class="slider-container">
-          <label for="excitement-slider">
-            Excitation
-          </label>
-            <mat-slider id="excitement-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="excitement"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.excitement }}</span>
-          </div>
-
-          <div class="slider-container">
-          <label for="anxiety-slider">
-            Anxiété
-          </label>
-            <mat-slider id="anxiety-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
-              <input matSliderThumb formControlName="anxiety"/>
-            </mat-slider>
-            <span aria-live="polite">{{ form.value.anxiety }}</span>
+            <div class="slider-container">
+              <label for="anxiety-slider">
+                Anxiété <span aria-live="polite">{{ form.value.anxiety }}</span>
+              </label>
+              <mat-slider id="anxiety-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+                <input matSliderThumb formControlName="anxiety"/>
+              </mat-slider>
+              <mat-accordion class="defs" displayMode="flat" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <strong>{{ definitions.anxiety.label }}</strong>: {{ definitions.anxiety.description }}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
         </div>
       </fieldset>
-
-      <mat-divider></mat-divider>
-
-      <mat-accordion class="defs" displayMode="flat" multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon>menu_book</mat-icon>&nbsp;Définitions des émotions
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <ul>
-            <li><strong>{{ definitions.awe.label }}</strong>: {{ definitions.awe.description }}</li>
-            <li><strong>{{ definitions.fear.label }}</strong>: {{ definitions.fear.description }}</li>
-            <li><strong>{{ definitions.contentment.label }}</strong>: {{ definitions.contentment.description }}</li>
-            <li><strong>{{ definitions.anger.label }}</strong>: {{ definitions.anger.description }}</li>
-            <li><strong>{{ definitions.amusement.label }}</strong>: {{ definitions.amusement.description }}</li>
-            <li><strong>{{ definitions.disgust.label }}</strong>: {{ definitions.disgust.description }}</li>
-            <li><strong>{{ definitions.serenity.label }}</strong>: {{ definitions.serenity.description }}</li>
-            <li><strong>{{ definitions.sadness.label }}</strong>: {{ definitions.sadness.description }}</li>
-            <li><strong>{{ definitions.excitement.label }}</strong>: {{ definitions.excitement.description }}</li>
-            <li><strong>{{ definitions.anxiety.label }}</strong>: {{ definitions.anxiety.description }}</li>
-          </ul>
-        </mat-expansion-panel>
-      </mat-accordion>
 
       <div class="actions">
         <button mat-flat-button color="primary" type="submit"
