@@ -1,30 +1,44 @@
 <section class="container">
-  <h1>Étude sur les émotions</h1>
-  <p>
-    Merci de participer. Vos réponses sont anonymes. Veuillez renseigner ces informations avant de commencer.
-  </p>
+  <header>
+    <h1 class="section-title">Étude sur les émotions</h1>
+    <p class="section-subtitle">Vos réponses sont anonymes. Merci de renseigner ces informations.</p>
+  </header>
 
-  <form [formGroup]="form" (ngSubmit)="onStart()" class="form">
-    <label>
-      Tranche d’âge
-      <select formControlName="ageGroup" required>
-        <option value="" disabled selected>Sélectionner…</option>
-        @for (ag of ageGroups; track ag) {
-          <option [value]="ag">{{ ag }}</option>
+  <div class="surface surface--low">
+    <form [formGroup]="form" (ngSubmit)="onStart()" class="form" aria-labelledby="form-title">
+      <h2 id="form-title" class="visually-hidden">Formulaire démographique</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tranche d’âge</mat-label>
+        <mat-select formControlName="ageGroup" required aria-label="Tranche d’âge">
+          <mat-option [value]="''" disabled>Sélectionner…</mat-option>
+          @for (ag of ageGroups; track ag) {
+            <mat-option [value]="ag">{{ ag }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.ageGroup.invalid && form.controls.ageGroup.touched) {
+          <mat-error>Ce champ est requis</mat-error>
         }
-      </select>
-    </label>
+      </mat-form-field>
 
-    <label>
-      Sexe
-      <select formControlName="gender" required>
-        <option value="" disabled selected>Sélectionner…</option>
-        @for (g of genders; track g) {
-          <option [value]="g">{{ g }}</option>
+      <mat-form-field appearance="outline">
+        <mat-label>Sexe</mat-label>
+        <mat-select formControlName="gender" required aria-label="Sexe">
+          <mat-option [value]="''" disabled>Sélectionner…</mat-option>
+          @for (g of genders; track g) {
+            <mat-option [value]="g">{{ g }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.gender.invalid && form.controls.gender.touched) {
+          <mat-error>Ce champ est requis</mat-error>
         }
-      </select>
-    </label>
+      </mat-form-field>
 
-    <button type="submit" [disabled]="form.invalid || loading()">Commencer</button>
-  </form>
+      <mat-divider></mat-divider>
+
+      <div class="actions">
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid || loading()">Commencer</button>
+      </div>
+    </form>
+  </div>
 </section>

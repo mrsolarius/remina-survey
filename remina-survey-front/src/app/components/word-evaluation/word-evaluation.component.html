@@ -1,108 +1,177 @@
-<div class="card">
-  <h2 class="word">{{ word() }}</h2>
+<section class="container">
+  <header>
+    <h1 class="word">{{ word() }}</h1>
+    <p class="section-subtitle">Évaluez ce mot (1–9 pour Valence/Arousal, 1–5 pour les émotions)</p>
+  </header>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
-    <label class="skip">
-      <input type="checkbox" formControlName="skip" />
-      <span>Je ne connais pas ce mot</span>
-    </label>
-    @if (form.controls.skip.value) {
-      <p class="hint">Aucune information ne sera envoyée et tous les champs sont désactivés.</p>
-    }
+  <div class="surface surface--low">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
+      <mat-checkbox formControlName="skip">Je ne connais pas ce mot</mat-checkbox>
+      @if (form.controls.skip.value) {
+        <p class="hint">Aucune information ne sera envoyée et tous les champs sont désactivés.</p>
+      }
 
-    <fieldset [disabled]="form.controls.skip.value">
-      <legend>Dimensions principales</legend>
-      <img ngSrc="valence.png" width="300" height="120" alt="Représentation de la valence" />
-      <label>
-        Valence (1–9)
-        <input type="range" formControlName="valence" min="1" max="9" />
-        <span>{{ form.value.valence }}</span>
-      </label>
-      <img ngSrc="arousal.png" width="300" height="120" alt="Représentation de l'arousal" />
-      <label>
-        Arousal (1–9)
-        <input type="range" formControlName="arousal" min="1" max="9" />
-        <span>{{ form.value.arousal }}</span>
-      </label>
-    </fieldset>
+      <fieldset [disabled]="form.controls.skip.value">
+        <legend>Dimensions principales</legend>
 
-    <fieldset [disabled]="form.controls.skip.value">
-      <legend>Émotions (1–5)</legend>
-      <div class="emotions">
-        <label>
-          Émerveillement
-          <input type="range" formControlName="awe" min="1" max="5" />
-          <span>{{ form.value.awe }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.awe }}</p></details>
+        <div class="slider-container">
+          <img ngSrc="valence.png" width="300" height="120" alt="Représentation de la valence"/>
 
-        <label>
-          Peur
-          <input type="range" formControlName="fear" min="1" max="5" />
-          <span>{{ form.value.fear }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.fear }}</p></details>
+          <label for="valence-slider">
+            Valence (1–9)
+          </label>
+          <mat-slider id="valence-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
+            <input matSliderThumb formControlName="valence"/>
+          </mat-slider>
+          <span aria-live="polite">{{ form.value.valence }}</span>
+        </div>
 
-        <label>
-          Contentement
-          <input type="range" formControlName="contentment" min="1" max="5" />
-          <span>{{ form.value.contentment }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.contentment }}</p></details>
+        <div class="slider-container">
+          <img ngSrc="arousal.png" width="300" height="120" alt="Représentation de l'arousal"/>
+          <label for="arousal-slider">
+            Arousal (1–9)
+          </label>
+          <mat-slider id="arousal-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
+            <input matSliderThumb formControlName="arousal"/>
+          </mat-slider>
+          <span aria-live="polite">{{ form.value.arousal }}</span>
+        </div>
+      </fieldset>
 
-        <label>
-          Colère
-          <input type="range" formControlName="anger" min="1" max="5" />
-          <span>{{ form.value.anger }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.anger }}</p></details>
+      <fieldset [disabled]="form.controls.skip.value">
+        <legend>Émotions (1–5)</legend>
+        <div class="emotions">
+          <div class="slider-container">
+            <label for="awe-slider">
+              Émerveillement
+            </label>
+            <mat-slider id="awe-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="awe"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.awe }}</span>
+          </div>
 
-        <label>
-          Amusement
-          <input type="range" formControlName="amusement" min="1" max="5" />
-          <span>{{ form.value.amusement }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.amusement }}</p></details>
+          <div class="slider-container">
+            <label for="fear-slider">
+              Peur
+            </label>
+            <mat-slider id="fear-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="fear"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.fear }}</span>
+          </div>
 
-        <label>
-          Dégoût
-          <input type="range" formControlName="disgust" min="1" max="5" />
-          <span>{{ form.value.disgust }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.disgust }}</p></details>
+          <div class="slider-container">
+            <label for="contentment-slider">
+              Contentement
+            </label>
+            <mat-slider id="contentment-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="contentment"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.contentment }}</span>
+          </div>
 
-        <label>
-          Sérénité
-          <input type="range" formControlName="serenity" min="1" max="5" />
-          <span>{{ form.value.serenity }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.serenity }}</p></details>
+          <div class="slider-container">
+            <label for="anger-slider">
+              Colère
+            </label>
+            <mat-slider id="anger-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="anger"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.anger }}</span>
+          </div>
 
-        <label>
-          Tristesse
-          <input type="range" formControlName="sadness" min="1" max="5" />
-          <span>{{ form.value.sadness }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.sadness }}</p></details>
+          <div class="slider-container">
+            <label for="amusement-slider">
+              Amusement
+            </label>
+            <mat-slider id="amusement-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="amusement"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.amusement }}</span>
+          </div>
 
-        <label>
-          Excitation
-          <input type="range" formControlName="excitement" min="1" max="5" />
-          <span>{{ form.value.excitement }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.excitement }}</p></details>
+          <div class="slider-container">
+            <label for="disgust-slider">
+              Dégoût
+            </label>
+            <mat-slider id="disgust-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="disgust"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.disgust }}</span>
+          </div>
 
-        <label>
-          Anxiété
-          <input type="range" formControlName="anxiety" min="1" max="5" />
-          <span>{{ form.value.anxiety }}</span>
-        </label>
-        <details class="def"><summary>Définition</summary><p>{{ definitions.anxiety }}</p></details>
+          <div class="slider-container">
+            <label for="serenity-slider">
+              Sérénité
+            </label>
+            <mat-slider id="serenity-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="serenity"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.serenity }}</span>
+          </div>
+
+          <div class="slider-container">
+            <label for="sadness-slider">
+              Tristesse
+            </label>
+            <mat-slider id="sadness-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="sadness"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.sadness }}</span>
+          </div>
+
+          <div class="slider-container">
+          <label for="excitement-slider">
+            Excitation
+          </label>
+            <mat-slider id="excitement-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="excitement"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.excitement }}</span>
+          </div>
+
+          <div class="slider-container">
+          <label for="anxiety-slider">
+            Anxiété
+          </label>
+            <mat-slider id="anxiety-slider" [min]="1" [max]="5" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="anxiety"/>
+            </mat-slider>
+            <span aria-live="polite">{{ form.value.anxiety }}</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <mat-divider></mat-divider>
+
+      <mat-accordion class="defs" displayMode="flat" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>menu_book</mat-icon>&nbsp;Définitions des émotions
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li><strong>{{ definitions.awe.label }}</strong>: {{ definitions.awe.description }}</li>
+            <li><strong>{{ definitions.fear.label }}</strong>: {{ definitions.fear.description }}</li>
+            <li><strong>{{ definitions.contentment.label }}</strong>: {{ definitions.contentment.description }}</li>
+            <li><strong>{{ definitions.anger.label }}</strong>: {{ definitions.anger.description }}</li>
+            <li><strong>{{ definitions.amusement.label }}</strong>: {{ definitions.amusement.description }}</li>
+            <li><strong>{{ definitions.disgust.label }}</strong>: {{ definitions.disgust.description }}</li>
+            <li><strong>{{ definitions.serenity.label }}</strong>: {{ definitions.serenity.description }}</li>
+            <li><strong>{{ definitions.sadness.label }}</strong>: {{ definitions.sadness.description }}</li>
+            <li><strong>{{ definitions.excitement.label }}</strong>: {{ definitions.excitement.description }}</li>
+            <li><strong>{{ definitions.anxiety.label }}</strong>: {{ definitions.anxiety.description }}</li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <div class="actions">
+        <button mat-flat-button color="primary" type="submit"
+                [disabled]="((form.invalid && !form.controls.skip.value) || submitting())">Valider
+        </button>
       </div>
-    </fieldset>
-
-    <div class="actions">
-      <button type="submit" [disabled]="((form.invalid && !form.controls.skip.value) || submitting())">Valider</button>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
+</section>

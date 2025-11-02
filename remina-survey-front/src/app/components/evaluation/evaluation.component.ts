@@ -5,10 +5,11 @@ import { SessionService } from '../../services/session.service';
 import { WordEvaluationComponent } from '../word-evaluation/word-evaluation.component';
 import { EvaluationService, EvaluationPayload } from '../../services/evaluation.service';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-evaluation',
-  imports: [RouterLink, WordEvaluationComponent, ProgressBarComponent],
+  imports: [RouterLink, WordEvaluationComponent, ProgressBarComponent, MatButtonModule],
   templateUrl: './evaluation.component.html',
   styleUrl: './evaluation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,14 @@
-import {ChangeDetectionStrategy, Component, input, output, signal} from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {EMOTION_DEFINITIONS} from '../../shared/emotion-definitions';
+import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { EMOTION_DEFINITIONS } from '../../shared/emotion-definitions';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface Word {
   valence: number;
@@ -20,7 +27,17 @@ export interface Word {
 
 @Component({
   selector: 'app-word-evaluation',
-  imports: [ReactiveFormsModule, NgOptimizedImage],
+  imports: [
+    ReactiveFormsModule,
+    NgOptimizedImage,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatIconModule,
+  ],
   templateUrl: './word-evaluation.component.html',
   styleUrl: './word-evaluation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

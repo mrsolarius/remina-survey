@@ -1,10 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SessionService, AgeGroup, Gender } from '../../services/session.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-demographics',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatDividerModule],
   templateUrl: './demographics.component.html',
   styleUrl: './demographics.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

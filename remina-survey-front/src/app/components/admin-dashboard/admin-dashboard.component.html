@@ -1,11 +1,14 @@
 <section class="container">
   <h1>Admin — Tableau de bord</h1>
 
-  <form [formGroup]="form" class="row" (ngSubmit)="saveToken()">
-    <input type="password" placeholder="Admin token" formControlName="token" />
-    <button type="submit">Enregistrer le token</button>
-    <button type="button" (click)="load()">Charger les stats</button>
-    <button type="button" (click)="download()" [disabled]="!stats()">Exporter CSV</button>
+  <form [formGroup]="form" class="row" (ngSubmit)="saveToken()" aria-label="Configuration admin">
+    <mat-form-field appearance="outline">
+      <mat-label>Admin token</mat-label>
+      <input matInput type="password" placeholder="••••••" formControlName="token" />
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">Enregistrer le token</button>
+    <button mat-stroked-button type="button" (click)="load()">Charger les stats</button>
+    <button mat-stroked-button type="button" (click)="download()" [disabled]="!stats()">Exporter CSV</button>
   </form>
 
   @if (stats(); as s) {
