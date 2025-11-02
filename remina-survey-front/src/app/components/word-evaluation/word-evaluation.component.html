@@ -12,13 +12,13 @@
 
     <fieldset [disabled]="form.controls.skip.value">
       <legend>Dimensions principales</legend>
-      <img src="valence.png" alt="représentation de la valance">
+      <img ngSrc="valence.png" width="300" height="120" alt="Représentation de la valence" />
       <label>
         Valence (1–9)
         <input type="range" formControlName="valence" min="1" max="9" />
         <span>{{ form.value.valence }}</span>
       </label>
-      <img src="arousal.png" alt="représentation de l'arousal">
+      <img ngSrc="arousal.png" width="300" height="120" alt="Représentation de l'arousal" />
       <label>
         Arousal (1–9)
         <input type="range" formControlName="arousal" min="1" max="9" />
@@ -34,51 +34,70 @@
           <input type="range" formControlName="awe" min="1" max="5" />
           <span>{{ form.value.awe }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.awe }}</p></details>
+
         <label>
           Peur
           <input type="range" formControlName="fear" min="1" max="5" />
           <span>{{ form.value.fear }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.fear }}</p></details>
+
         <label>
           Contentement
           <input type="range" formControlName="contentment" min="1" max="5" />
           <span>{{ form.value.contentment }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.contentment }}</p></details>
+
         <label>
           Colère
           <input type="range" formControlName="anger" min="1" max="5" />
           <span>{{ form.value.anger }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.anger }}</p></details>
+
         <label>
           Amusement
           <input type="range" formControlName="amusement" min="1" max="5" />
           <span>{{ form.value.amusement }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.amusement }}</p></details>
+
         <label>
           Dégoût
           <input type="range" formControlName="disgust" min="1" max="5" />
           <span>{{ form.value.disgust }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.disgust }}</p></details>
+
         <label>
           Sérénité
           <input type="range" formControlName="serenity" min="1" max="5" />
           <span>{{ form.value.serenity }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.serenity }}</p></details>
+
         <label>
           Tristesse
           <input type="range" formControlName="sadness" min="1" max="5" />
           <span>{{ form.value.sadness }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.sadness }}</p></details>
+
         <label>
           Excitation
           <input type="range" formControlName="excitement" min="1" max="5" />
           <span>{{ form.value.excitement }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.excitement }}</p></details>
+
         <label>
           Anxiété
           <input type="range" formControlName="anxiety" min="1" max="5" />
           <span>{{ form.value.anxiety }}</span>
         </label>
+        <details class="def"><summary>Définition</summary><p>{{ definitions.anxiety }}</p></details>
       </div>
     </fieldset>
 

@@ -41,7 +41,7 @@ export class SessionService {
         this.sessionIdSig.set(res.sessionId);
         this.wordsSig.set(res.words);
         this.indexSig.set(0);
-        void this.router.navigateByUrl('/evaluate');
+        void this.router.navigateByUrl('/explications');
       })
     );
   }

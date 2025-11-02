@@ -1,0 +1,30 @@
+<section class="container">
+  <h1>Introduction à l’étude</h1>
+  <p>
+    Nous allons vous présenter une liste de mots. Pour chacun de ces mots, nous vous demandons d’indiquer dans quelle mesure
+    ils évoquent pour vous les 10 émotions suivantes : l’émerveillement, la peur, la satisfaction, la colère, l’amusement,
+    le dégoût, la sérénité, la tristesse, l’excitation et l’anxiété.
+  </p>
+  <p>
+    Si vous considérez que le mot n’évoque pas du tout l’émotion en question, choisissez le chiffre 1. Si vous considérez que
+    le mot évoque fortement l’émotion en question, choisissez le chiffre 5. Les chiffres intermédiaires vous permettent de
+    nuancer votre réponse. Si vous ne connaissez pas la signification du mot et que vous ne pouvez pas donner d’évaluation,
+    cochez la case « je ne connais pas ce mot ».
+  </p>
+  <p>Il n’y a pas de bonne ou de mauvaise réponse, répondez aussi spontanément que possible. Merci pour votre collaboration.</p>
+
+  <h2>Définitions des émotions</h2>
+  <p>Les émotions ont été définies oralement par un des expérimentateurs comme suit :</p>
+  <ul class="definitions">
+    @for (entry of entries; track entry[0]) {
+      <li>
+        <strong class="label">{{ entry[0] }}</strong>
+        <span class="text">{{ entry[1] }}</span>
+      </li>
+    }
+  </ul>
+
+  <p class="actions">
+    <a routerLink="/evaluate" class="btn">Commencer l’évaluation</a>
+  </p>
+</section>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { of, switchMap, tap } from 'rxjs';
 import { SessionService } from '../../services/session.service';
 import { WordEvaluationComponent } from '../word-evaluation/word-evaluation.component';
@@ -7,7 +8,7 @@ import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-evaluation',
-  imports: [WordEvaluationComponent, ProgressBarComponent],
+  imports: [RouterLink, WordEvaluationComponent, ProgressBarComponent],
   templateUrl: './evaluation.component.html',
   styleUrl: './evaluation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

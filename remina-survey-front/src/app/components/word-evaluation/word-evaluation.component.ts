@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, input, output, signal} from '@angular/core';
+import {NgOptimizedImage} from '@angular/common';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {EMOTION_DEFINITIONS} from '../../shared/emotion-definitions';
 
 export interface Word {
   valence: number;
@@ -18,12 +20,13 @@ export interface Word {
 
 @Component({
   selector: 'app-word-evaluation',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgOptimizedImage],
   templateUrl: './word-evaluation.component.html',
   styleUrl: './word-evaluation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WordEvaluationComponent {
+  readonly definitions = EMOTION_DEFINITIONS;
   readonly word = input.required<string>();
   readonly submitting = signal(false);
 

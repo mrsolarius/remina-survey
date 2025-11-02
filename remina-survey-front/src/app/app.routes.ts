@@ -8,6 +8,10 @@ export const routes: Routes = [
   { path: 'evaluate', component: EvaluationComponent },
   { path: 'done', component: CompletionComponent },
   {
+    path: 'explications',
+    loadComponent: () => import('./components/explications/explications.component').then(m => m.ExplicationsComponent)
+  },
+  {
     path: 'admin',
     loadComponent: () => import('./components/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent)
   },

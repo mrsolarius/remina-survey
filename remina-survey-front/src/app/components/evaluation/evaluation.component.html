@@ -1,4 +1,5 @@
 <section class="container">
+  <p class="intro-link"><a routerLink="/explications">Lire l’introduction et les définitions</a></p>
   @if (word(); as w) {
     <app-progress-bar [value]="percent()" [label]="label()" />
     <app-word-evaluation [word]="w.text" (evaluationSubmit)="onSubmit(w.id, $event)"></app-word-evaluation>
