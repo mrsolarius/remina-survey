@@ -4,7 +4,7 @@ import { SessionService } from '../../services/session.service';
 @Component({
   selector: 'app-completion',
   templateUrl:'completion.component.html',
-  styleUrls: ['completion.component.css'],
+  styleUrls: ['completion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompletionComponent {
