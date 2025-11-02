@@ -1,0 +1,69 @@
+<section class="container">
+  <h1>Admin — Tableau de bord</h1>
+
+  <form [formGroup]="form" class="row" (ngSubmit)="saveToken()">
+    <input type="password" placeholder="Admin token" formControlName="token" />
+    <button type="submit">Enregistrer le token</button>
+    <button type="button" (click)="load()">Charger les stats</button>
+    <button type="button" (click)="download()" [disabled]="!stats()">Exporter CSV</button>
+  </form>
+
+  @if (stats(); as s) {
+    <div class="grid">
+      <div class="card">
+        <h3>Sessions complétées</h3>
+        <p>{{ s.totalSessions }}</p>
+      </div>
+      <div class="card">
+        <h3>Âges</h3>
+        <ul>
+          @for (entry of entries(s.participants.ageGroups); track entry[0]) {
+            <li>{{ entry[0] }}: {{ entry[1] }}</li>
+          }
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Sexes</h3>
+        <ul>
+          @for (entry of entries(s.participants.gender); track entry[0]) {
+            <li>{{ entry[0] }}: {{ entry[1] }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <h3>Mots (moyennes)</h3>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Mot</th><th>n</th><th>Valence</th><th>Arousal</th>
+        <th>Awe</th><th>Fear</th><th>Contentment</th><th>Anger</th>
+        <th>Amusement</th><th>Disgust</th><th>Serenity</th><th>Sadness</th>
+        <th>Excitement</th><th>Anxiety</th>
+      </tr>
+      </thead>
+      <tbody>
+      @for (w of s.words; track w.text) {
+        <tr>
+          <td>{{ w.text }}</td>
+          <td>{{ w.count }}</td>
+          <td>{{ w.mean_valence | number:'1.1-2' }}</td>
+          <td>{{ w.mean_arousal | number:'1.1-2' }}</td>
+          <td>{{ w.mean_awe | number:'1.1-2' }}</td>
+          <td>{{ w.mean_fear | number:'1.1-2' }}</td>
+          <td>{{ w.mean_contentment | number:'1.1-2' }}</td>
+          <td>{{ w.mean_anger | number:'1.1-2' }}</td>
+          <td>{{ w.mean_amusement | number:'1.1-2' }}</td>
+          <td>{{ w.mean_disgust | number:'1.1-2' }}</td>
+          <td>{{ w.mean_serenity | number:'1.1-2' }}</td>
+          <td>{{ w.mean_sadness | number:'1.1-2' }}</td>
+          <td>{{ w.mean_excitement | number:'1.1-2' }}</td>
+          <td>{{ w.mean_anxiety | number:'1.1-2' }}</td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  } @else {
+    <p>Aucune donnée chargée.</p>
+  }
+</section>

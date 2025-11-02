@@ -1,0 +1,8 @@
+<section class="container">
+  @if (word(); as w) {
+    <app-progress-bar [value]="percent()" [label]="label()" />
+    <app-word-evaluation [word]="w.text" (evaluationSubmit)="onSubmit(w.id, $event)"></app-word-evaluation>
+  } @else {
+    <p>Aucune session active. Retour à l’accueil…</p>
+  }
+</section>

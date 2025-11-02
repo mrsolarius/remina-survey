@@ -1,0 +1,79 @@
+<div class="card">
+  <h2 class="word">{{ word() }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
+    <fieldset>
+      <legend>Dimensions principales</legend>
+      <label>
+        Valence (1–9)
+        <input type="range" formControlName="valence" min="1" max="9" />
+        <span>{{ form.value.valence }}</span>
+      </label>
+      <label>
+        Arousal (1–9)
+        <input type="range" formControlName="arousal" min="1" max="9" />
+        <span>{{ form.value.arousal }}</span>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Émotions (1–5)</legend>
+      <div class="emotions">
+        <label>
+          Émerveillement
+          <input type="range" formControlName="awe" min="1" max="5" />
+          <span>{{ form.value.awe }}</span>
+        </label>
+        <label>
+          Peur
+          <input type="range" formControlName="fear" min="1" max="5" />
+          <span>{{ form.value.fear }}</span>
+        </label>
+        <label>
+          Contentement
+          <input type="range" formControlName="contentment" min="1" max="5" />
+          <span>{{ form.value.contentment }}</span>
+        </label>
+        <label>
+          Colère
+          <input type="range" formControlName="anger" min="1" max="5" />
+          <span>{{ form.value.anger }}</span>
+        </label>
+        <label>
+          Amusement
+          <input type="range" formControlName="amusement" min="1" max="5" />
+          <span>{{ form.value.amusement }}</span>
+        </label>
+        <label>
+          Dégoût
+          <input type="range" formControlName="disgust" min="1" max="5" />
+          <span>{{ form.value.disgust }}</span>
+        </label>
+        <label>
+          Sérénité
+          <input type="range" formControlName="serenity" min="1" max="5" />
+          <span>{{ form.value.serenity }}</span>
+        </label>
+        <label>
+          Tristesse
+          <input type="range" formControlName="sadness" min="1" max="5" />
+          <span>{{ form.value.sadness }}</span>
+        </label>
+        <label>
+          Excitation
+          <input type="range" formControlName="excitement" min="1" max="5" />
+          <span>{{ form.value.excitement }}</span>
+        </label>
+        <label>
+          Anxiété
+          <input type="range" formControlName="anxiety" min="1" max="5" />
+          <span>{{ form.value.anxiety }}</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" [disabled]="form.invalid || submitting()">Valider</button>
+    </div>
+  </form>
+</div>

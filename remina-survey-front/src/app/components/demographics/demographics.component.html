@@ -1,0 +1,30 @@
+<section class="container">
+  <h1>Étude sur les émotions</h1>
+  <p>
+    Merci de participer. Vos réponses sont anonymes. Veuillez renseigner ces informations avant de commencer.
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="onStart()" class="form">
+    <label>
+      Tranche d’âge
+      <select formControlName="ageGroup" required>
+        <option value="" disabled selected>Sélectionner…</option>
+        @for (ag of ageGroups; track ag) {
+          <option [value]="ag">{{ ag }}</option>
+        }
+      </select>
+    </label>
+
+    <label>
+      Sexe
+      <select formControlName="gender" required>
+        <option value="" disabled selected>Sélectionner…</option>
+        @for (g of genders; track g) {
+          <option [value]="g">{{ g }}</option>
+        }
+      </select>
+    </label>
+
+    <button type="submit" [disabled]="form.invalid || loading()">Commencer</button>
+  </form>
+</section>

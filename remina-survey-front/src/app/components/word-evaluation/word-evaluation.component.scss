@@ -1,0 +1,52 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.word {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+fieldset {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+legend {
+  padding: 0 .5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.emotions {
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: .5rem;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  padding: .5rem 1rem;
+}
