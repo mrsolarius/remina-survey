@@ -32,12 +32,33 @@ body {
   border-radius: 12px;
   padding: 16px;
 }
-.surface--high { background: var(--mat-sys-surface-container-high); }
-.section-title { font: var(--mat-sys-title-large); margin: 0 0 4px; }
-.section-subtitle { color: var(--mat-sys-on-surface-variant); margin: 0 0 16px; }
-.spacer-8 { height: 8px; }
-.spacer-16 { height: 16px; }
-.spacer-24 { height: 24px; }
+
+.surface--high {
+  background: var(--mat-sys-surface-container-high);
+}
+
+.section-title {
+  font: var(--mat-sys-title-large);
+  margin: 0 0 4px;
+}
+
+.section-subtitle {
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.spacer-8 {
+  height: 8px;
+}
+
+.spacer-16 {
+  height: 16px;
+}
+
+.spacer-24 {
+  height: 24px;
+}
 
 html, body {
   height: 100%;

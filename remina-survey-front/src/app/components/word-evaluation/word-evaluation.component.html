@@ -1,12 +1,6 @@
 <section class="container">
-  <header>
-    <h1 class="word">{{ word() }}</h1>
-    <p class="section-subtitle">Évaluez ce mot (1–9 pour Valence/Arousal, 1–5 pour les émotions)</p>
-  </header>
-
-  <div class="surface surface--low">
+  <div class="not-top-radius surface surface--low">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
-      <mat-checkbox formControlName="skip">Je ne connais pas ce mot</mat-checkbox>
       @if (form.controls.skip.value) {
         <p class="hint">Aucune information ne sera envoyée et tous les champs sont désactivés.</p>
       }
@@ -15,7 +9,7 @@
         <legend>Dimensions principales (1–9)</legend>
 
         <div class="slider-container">
-          <img ngSrc="valence.png" width="300" height="120" alt="Représentation de la valence"/>
+          <img ngSrc="valence.png" width="325" height="60" alt="Représentation de la valence"/>
 
           <label for="valence-slider">
             Valence <span aria-live="polite">{{ form.value.valence }}</span>
@@ -26,7 +20,7 @@
         </div>
 
         <div class="slider-container">
-          <img ngSrc="arousal.png" width="300" height="120" alt="Représentation de l'arousal"/>
+          <img ngSrc="arousal.png" width="325" height="60" alt="Représentation de l'arousal"/>
           <label for="arousal-slider">
             Arousal <span aria-live="polite">{{ form.value.arousal }}</span>
           </label>
@@ -241,11 +235,20 @@
         </div>
       </fieldset>
 
-      <div class="actions">
+      <section class="actions" aria-label="Actions">
+        <div class="left-actions" aria-label="Ignorer le mot">
+          <button mat-stroked-button type="button" (click)="skipWord()"
+                  [matTooltip]="'Aucune information ne sera envoyée'" matTooltipShowDelay="150"
+                  [disabled]="form.controls.skip.value || submitting()">
+            Je ne connais pas ce mot
+            <mat-icon>info</mat-icon>
+          </button>
+        </div>
+
         <button mat-flat-button color="primary" type="submit"
-                [disabled]="((form.invalid && !form.controls.skip.value) || submitting())">Valider
+                [disabled]="((form.invalid && !form.controls.skip.value) || submitting())">Suivant
         </button>
-      </div>
+      </section>
     </form>
   </div>
 </section>

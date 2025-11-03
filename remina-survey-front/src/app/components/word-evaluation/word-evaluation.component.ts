@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, input, output, signal } from '@angu
 import { NgOptimizedImage } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EMOTION_DEFINITIONS } from '../../shared/emotion-definitions';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export interface Word {
   valence: number;
@@ -30,13 +30,13 @@ export interface Word {
   imports: [
     ReactiveFormsModule,
     NgOptimizedImage,
-    MatCheckboxModule,
     MatSliderModule,
     MatButtonModule,
     MatFormFieldModule,
     MatExpansionModule,
     MatDividerModule,
     MatIconModule,
+    MatTooltipModule,
   ],
   templateUrl: './word-evaluation.component.html',
   styleUrl: './word-evaluation.component.scss',
@@ -67,6 +67,11 @@ export class WordEvaluationComponent {
 
   readonly evaluationSubmit = output<Word | null>();
 
+  skipWord() {
+    if (this.submitting()) return;
+    this.form.controls.skip.setValue(true);
+  }
+
   async onSubmit() {
     if (this.submitting()) return;
     const {skip, ...rest} = this.form.getRawValue();
@@ -91,5 +96,10 @@ export class WordEvaluationComponent {
       excitement: 3,
       anxiety: 3,
     });
+
+    // Scroll to the top of the page after each validation for better UX
+    if (globalThis.window !== undefined && typeof window.scrollTo === 'function') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }
