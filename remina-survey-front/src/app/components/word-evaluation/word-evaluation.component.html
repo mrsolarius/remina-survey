@@ -10,28 +10,49 @@
         <p class="hint">Aucune information ne sera envoyée et tous les champs sont désactivés.</p>
       }
 
+
       <fieldset [disabled]="form.controls.skip.value">
         <legend>Dimensions principales (1–9)</legend>
+        <div class="emotion-pair">
+          <div class="slider-container">
+            <img ngSrc="valence.png" width="325" height="60" alt="Représentation de la valence"/>
+            <label for="valence-slider">
+              Valence <span aria-live="polite">{{ form.value.valence }}</span>
+            </label>
+            <mat-slider id="valence-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="valence"/>
+            </mat-slider>
+            <mat-accordion class="defs" displayMode="flat" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <strong>{{ definitions.valence.label }}</strong>: {{ definitions.valence.description }}
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
 
-        <div class="slider-container">
-          <img ngSrc="valence.png" width="325" height="60" alt="Représentation de la valence"/>
-
-          <label for="valence-slider">
-            Valence <span aria-live="polite">{{ form.value.valence }}</span>
-          </label>
-          <mat-slider id="valence-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
-            <input matSliderThumb formControlName="valence"/>
-          </mat-slider>
-        </div>
-
-        <div class="slider-container">
-          <img ngSrc="arousal.png" width="325" height="60" alt="Représentation de l'arousal"/>
-          <label for="arousal-slider">
-            Arousal <span aria-live="polite">{{ form.value.arousal }}</span>
-          </label>
-          <mat-slider id="arousal-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
-            <input matSliderThumb formControlName="arousal"/>
-          </mat-slider>
+          <div class="slider-container">
+            <img ngSrc="arousal.png" width="325" height="60" alt="Représentation de l'arousal"/>
+            <label for="arousal-slider">
+              Arousal <span aria-live="polite">{{ form.value.arousal }}</span>
+            </label>
+            <mat-slider id="arousal-slider" [min]="1" [max]="9" [step]="1" discrete showTickMarks>
+              <input matSliderThumb formControlName="arousal"/>
+            </mat-slider>
+            <mat-accordion class="defs" displayMode="flat" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon>menu_book</mat-icon>&nbsp;Définition
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <strong>{{ definitions.arousal.label }}</strong>: {{ definitions.arousal.description }}
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
         </div>
       </fieldset>
 

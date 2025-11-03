@@ -1,4 +1,6 @@
 export type EmotionKey =
+  | 'valence'
+  | 'arousal'
   | 'awe'
   | 'fear'
   | 'contentment'
@@ -16,6 +18,14 @@ export interface EmotionDefinition {
 }
 
 export const EMOTION_DEFINITIONS: Record<EmotionKey, EmotionDefinition> = {
+  valence: {
+    label: "Valence",
+    description: "La valence mesure le caractère agréable ou désagréable que le mot évoque pour vous. 1 signifie que le mot vous semble très désagréable, négatif ou déplaisant. 9 signifie que le mot vous semble très agréable, positif ou plaisant."
+  },
+  arousal: {
+    label: "Arousal",
+    description: "L’arousal mesure l’intensité de la réaction ou de l’émotion que le mot provoque en vous. 1 signifie que le mot ne suscite aucune réaction, qu’il vous laisse indifférent·e ou calme. 9 signifie que le mot provoque une réaction très forte, qu’il vous stimule, excite ou perturbe intensément."
+  },
   awe: {
     label: "Émerveillement",
     description: "L'émerveillement peut être défini comme un état associé à l'étonnement et à la contemplation. Lorsqu'un individu ressent cette émotion, son esprit s'enrichit et sa compréhension de l'Univers se développe. C'est une émotion qui immobilise et donne envie d'explorer tous les détails de l'expérience vécue."
