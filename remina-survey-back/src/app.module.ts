@@ -30,6 +30,9 @@ import { join } from 'node:path';
       rootPath: join(__dirname, '..', 'public'),
       exclude: ['/api*'],
       serveRoot: '/',
+      serveStaticOptions: {
+        extensions: ['html', 'ico', 'css', 'js', 'png'],
+      },
     }),
     SurveyModule,
     AdminModule,

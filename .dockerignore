@@ -1,0 +1,34 @@
+# General
+.git
+.gitignore
+.idea
+.vscode
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile*
+.dockerignore
+
+# Build outputs
+**/dist
+**/build
+**/.angular
+**/.cache
+**/coverage
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Misc
+*.swp
+*.swo

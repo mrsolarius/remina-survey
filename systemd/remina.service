@@ -1,0 +1,22 @@
+[Unit]
+Description=Remina Survey (NestJS + Angular) via Docker Compose
+Requires=docker.service network-online.target
+After=docker.service network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/remina
+EnvironmentFile=-/opt/remina/.env
+# Pull newer images (for image-based deployments)
+ExecStartPre=/usr/bin/docker compose -f docker-compose.prod.yml pull --quiet
+# Start or update the stack
+ExecStart=/usr/bin/docker compose -f docker-compose.prod.yml up -d --remove-orphans
+# Stop stack
+ExecStop=/usr/bin/docker compose -f docker-compose.prod.yml down
+# Reload stack (apply changes without full stop)
+ExecReload=/usr/bin/docker compose -f docker-compose.prod.yml up -d --remove-orphans
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

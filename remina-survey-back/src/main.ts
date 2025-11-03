@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import { join } from 'node:path';
 import { Express, Request, Response, NextFunction } from 'express';
 
 async function bootstrap() {
@@ -21,7 +20,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Remina Survey API')
-    .setDescription('API pour la plateforme d’évaluation de mots émotionnels')
+    .setDescription("API pour la plateforme d'évaluation de mots émotionnels")
     .setVersion('1.0.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
@@ -29,11 +28,8 @@ async function bootstrap() {
 
   const expressApp = app.getHttpAdapter().getInstance() as Express;
 
-  if (process.env.NODE_ENV === 'production') {
-    expressApp.get(/^(?!\/api).*/, (_req: Request, res: Response) => {
-      res.sendFile(join(__dirname, '..', 'public', 'index.html'));
-    });
-  } else {
+  // En développement : proxy vers Angular
+  if (process.env.NODE_ENV !== 'production') {
     const proxy = createProxyMiddleware({
       target: 'http://localhost:4200',
       changeOrigin: true,
@@ -47,9 +43,14 @@ async function bootstrap() {
       proxy(req, res, next).catch(next);
     });
   }
+  // En production : ServeStaticModule gère déjà les fichiers statiques
+  // Il suffit de laisser le module faire son travail (configuré dans app.module.ts)
 
   const port = Number(process.env.PORT || 3000);
   await app.listen(port);
+  console.log(
+    `Application running on port ${port} (${process.env.NODE_ENV || 'development'} mode)`,
+  );
 }
 
 bootstrap().catch((err) => {
