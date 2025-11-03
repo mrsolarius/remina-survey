@@ -16,6 +16,13 @@ async function bootstrap() {
     const dataSource = app.get(DataSource);
     const repo = dataSource.getRepository(Word);
 
+    // Skip if words already exist (run only on first startup)
+    const existingCount = await repo.count();
+    if (existingCount > 0) {
+      console.log(`Seed skipped: ${existingCount} words already present.`);
+      return;
+    }
+
     const filePath = path.resolve(__dirname, '../../data/mots.txt');
     if (!fs.existsSync(filePath)) {
       console.error('File not found:', filePath);

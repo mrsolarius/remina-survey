@@ -28,7 +28,7 @@ import { join } from 'node:path';
     // Serve Angular build in production at root ('/') and exclude API routes
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
-      exclude: ['/api*'],
+      exclude: ['/api/*'],
       serveRoot: '/',
       serveStaticOptions: {
         extensions: ['html', 'ico', 'css', 'js', 'png'],

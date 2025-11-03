@@ -84,8 +84,9 @@ sudo docker exec -it remina-postgres psql -U ${DB_USER:-postgres} -d ${DB_NAME:-
 - Logs: `sudo docker compose -f /opt/remina/docker-compose.prod.yml logs -f app postgres`
 
 ## Notes importantes
+- Seed des mots: au démarrage du container app, un script `dist/scripts/seed-words.js` importe les mots depuis `remina-survey-back/data/mots.txt` (upsert par texte). Il ne s'exécute réellement qu'au premier démarrage: si des mots existent déjà en base, il est automatiquement ignoré.
 - Le seed SQL ne s'exécute que lors de la première initialisation du volume `remina_pg_data`.
-- Pour rejouer l'init: arrêter le stack, supprimer le volume (`docker volume rm remina_remina_pg_data` si le projet s'appelle `remina`), puis relancer.
+- Pour rejouer l'init Postgres: arrêter le stack, supprimer le volume (`docker volume rm remina_remina_pg_data` si le projet s'appelle `remina`), puis relancer.
 - Sécurité: changez les mots de passe, n'exposez pas Postgres si inutile, placez un reverse proxy TLS (Nginx/Traefik) en production si possible.
 - Sauvegardes: sauvegardez le volume `remina_pg_data`.
 - Healthcheck: le container app vérifie `GET /`. Vous pouvez créer un endpoint `/api/health` et ajuster le `HEALTHCHECK`.
