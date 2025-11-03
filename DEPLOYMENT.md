@@ -46,22 +46,22 @@ Accéder à l'app: http://localhost:3000/
 1. Copier le dépôt dans `/opt/ReminaSurvey` (ou autre chemin, mais garder cohérent avec `WorkingDirectory`):
 
 ```sh
-sudo mkdir -p /opt/ReminaSurvey
-sudo chown -R $USER:$USER /opt/ReminaSurvey
-rsync -av --delete ./ /opt/ReminaSurvey/
+sudo mkdir -p /opt/remina-survey
+sudo chown -R $USER:$USER /opt/remina-survey
+rsync -av --delete ./ /opt/remina-survey/
 ```
 
 2. Copier et adapter le fichier d'environnement:
 
 ```sh
-cp /opt/ReminaSurvey/.env.example /opt/ReminaSurvey/.env
-# Éditer /opt/ReminaSurvey/.env avec vos valeurs
+cp /opt/remina-survey/.env.example /opt/remina-survey/.env
+# Éditer /opt/remina-survey/.env avec vos valeurs
 ```
 
 3. Installer le service systemd:
 
 ```sh
-sudo cp /opt/ReminaSurvey/systemd/remina.service /etc/systemd/system/remina.service
+sudo cp /opt/remina-survey/systemd/remina.service /etc/systemd/system/remina.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now remina
 ```
