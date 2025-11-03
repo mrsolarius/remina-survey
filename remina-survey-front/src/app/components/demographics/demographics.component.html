@@ -1,10 +1,10 @@
 <section class="container">
-  <header>
-    <h1 class="section-title">Étude sur les émotions</h1>
+  <section class="top-sticky" aria-label="Introduction de l’étude">
+    <h1 class="section-title">Étude sur les émotions/humeurs</h1>
     <p class="section-subtitle">Vos réponses sont anonymes. Merci de renseigner ces informations.</p>
-  </header>
+  </section>
 
-  <div class="surface surface--low">
+  <div class="surface surface--low not-top-radius">
     <form [formGroup]="form" (ngSubmit)="onStart()" class="form" aria-labelledby="form-title">
       <h2 id="form-title" class="visually-hidden">Formulaire démographique</h2>
 
@@ -36,9 +36,13 @@
 
       <mat-divider></mat-divider>
 
-      <div class="actions">
-        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid || loading()">Commencer</button>
-      </div>
+      <section class="bottom-sticky actions" aria-label="Démarrer l’étude">
+        <div style="display:flex; justify-content:flex-end; align-items:center; gap:8px;">
+          <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid || loading()">
+            Commencer
+          </button>
+        </div>
+      </section>
     </form>
   </div>
 </section>

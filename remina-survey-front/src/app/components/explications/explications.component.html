@@ -1,10 +1,10 @@
 <section class="container">
-  <header>
+  <section class="top-sticky" aria-label="Introduction à l’étude">
     <h1 class="section-title">Introduction à l’étude</h1>
     <p class="section-subtitle">Merci de lire ces informations avant de commencer.</p>
-  </header>
+  </section>
 
-  <div class="surface surface--low">
+  <div class="surface surface--low not-top-radius">
     <p>
       Nous allons vous présenter une liste de mots. Pour chacun de ces mots, nous vous demandons d’indiquer dans
       quelle mesure
@@ -21,6 +21,22 @@
       d’évaluation,
       cochez la case « je ne connais pas ce mot ».
     </p>
+    <p>
+      En plus des émotions, nous vous demandons d’évaluer chaque mot selon deux dimensions :
+      <strong>la valence</strong> et <strong>l’arousal</strong>.
+    </p>
+    <p>
+      <strong>La valence</strong> reflète le caractère agréable ou désagréable du mot pour vous.
+      Si le mot vous semble très désagréable, choisissez le chiffre 1.
+      Si le mot vous semble très agréable, choisissez le chiffre 5.
+      Les chiffres intermédiaires vous permettent de nuancer votre réponse.
+    </p>
+    <p>
+      <strong>L’arousal</strong> (ou activation émotionnelle) reflète l’intensité de l’émotion ou de la réaction que le mot provoque en vous.
+      Si le mot ne provoque aucune réaction, choisissez le chiffre 1.
+      Si le mot provoque une réaction très intense, choisissez le chiffre 5.
+      Là encore, les chiffres intermédiaires vous permettent de nuancer.
+    </p>
     <p>Il n’y a pas de bonne ou de mauvaise réponse, répondez aussi spontanément que possible. Merci pour votre
       collaboration.</p>
 
@@ -35,10 +51,13 @@
       }
     </ul>
 
-    <div class="actions" style="display:flex; justify-content: flex-end; margin-top:16px; gap:8px;">
-      <a mat-stroked-button color="primary" routerLink="/evaluate">
-        <mat-icon>play_arrow</mat-icon>
-        Commencer l’évaluation</a>
-    </div>
+    <section class="bottom-sticky actions" aria-label="Commencer l’étude">
+      <div style="display:flex; justify-content:flex-end; align-items:center; gap:8px;">
+        <a mat-flat-button color="primary" routerLink="/evaluate">
+          <mat-icon>play_arrow</mat-icon>
+          Commencer l’étude
+        </a>
+      </div>
+    </section>
   </div>
 </section>

@@ -25,6 +25,13 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/* Layout containers */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
 /* Material You inspired light surfaces */
 .surface {
   background: var(--mat-sys-surface-container-low);
@@ -37,14 +44,43 @@ body {
   background: var(--mat-sys-surface-container-high);
 }
 
+/* Sticky header/footer utilities */
+.top-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  background: var(--mat-sys-surface-container-low);
+  border: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  padding: 16px;
+  border-radius: 12px 12px 0 0;
+}
+
+.bottom-sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 110;
+  background: var(--mat-sys-surface);
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  padding: 12px 16px;
+  margin: 0 -16px -16px;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.06);
+  border-radius: 0 0 12px 12px;
+}
+
 .section-title {
   font: var(--mat-sys-title-large);
   margin: 0 0 4px;
+  text-align: center;
+}
+
+.not-top-radius{
+  border-radius: 0 0 12px 12px;
 }
 
 .section-subtitle {
   color: var(--mat-sys-on-surface-variant);
-  margin: 0 0 16px;
+  margin: 4px 0 0;
   text-align: center;
 }
 

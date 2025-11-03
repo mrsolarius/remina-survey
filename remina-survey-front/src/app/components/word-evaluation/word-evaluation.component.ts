@@ -9,6 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {RouterLink} from '@angular/router';
 
 export interface Word {
   valence: number;
@@ -37,6 +38,7 @@ export interface Word {
     MatDividerModule,
     MatIconModule,
     MatTooltipModule,
+    RouterLink,
   ],
   templateUrl: './word-evaluation.component.html',
   styleUrl: './word-evaluation.component.scss',

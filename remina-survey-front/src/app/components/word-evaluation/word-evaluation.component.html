@@ -1,5 +1,10 @@
-<section class="container">
+<section>
   <div class="not-top-radius surface surface--low">
+    <p class="intro-link">
+      <a mat-button color="primary" routerLink="/explications">Lire l’introduction et les
+        définitions</a>
+    </p>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
       @if (form.controls.skip.value) {
         <p class="hint">Aucune information ne sera envoyée et tous les champs sont désactivés.</p>
@@ -235,7 +240,7 @@
         </div>
       </fieldset>
 
-      <section class="actions" aria-label="Actions">
+      <section class="actions bottom-sticky" aria-label="Actions">
         <div class="left-actions" aria-label="Ignorer le mot">
           <button mat-stroked-button type="button" (click)="skipWord()"
                   [matTooltip]="'Aucune information ne sera envoyée'" matTooltipShowDelay="150"
