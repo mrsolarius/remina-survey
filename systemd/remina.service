@@ -6,8 +6,8 @@ After=docker.service network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/opt/remina
-EnvironmentFile=-/opt/remina/.env
+WorkingDirectory=/opt/remina-survey
+EnvironmentFile=-/opt/remina-survey/.env
 # Pull newer images (for image-based deployments)
 ExecStartPre=/usr/bin/docker compose -f docker-compose.prod.yml pull --quiet
 # Start or update the stack
