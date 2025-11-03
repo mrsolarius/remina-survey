@@ -49,6 +49,10 @@ COPY --from=back-builder --chown=node:node /app/back/package*.json ./
 COPY --from=back-builder --chown=node:node /app/back/node_modules ./node_modules
 COPY --from=back-builder --chown=node:node /app/back/dist ./dist
 COPY --from=back-builder --chown=node:node /app/back/public ./public
+# Copy TS sources and configs for ts-node runtime seeding
+COPY --from=back-builder --chown=node:node /app/back/src ./src
+COPY --from=back-builder --chown=node:node /app/back/data ./data
+COPY --from=back-builder --chown=node:node /app/back/tsconfig*.json ./
 
 # Listen on Nest default port
 EXPOSE 3000
@@ -56,4 +60,4 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --retries=5 \
     CMD curl -fsS http://localhost:3000/ || exit 1
 
-CMD ["sh", "-c", "node dist/scripts/seed-words.js && node dist/main.js"]
+CMD ["sh", "-c", "npm run --prefix . seed:words && node dist/main.js"]
